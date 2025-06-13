@@ -1,32 +1,13 @@
-﻿enum State { On, Off }
+﻿using InversaoDip;
 
-class Lamp
+class Program
 {
-    State State;
-
-    public Lamp(State state)
+    static void Main(string[] args)
     {
-        State = state;
-    }
+        var lamp = new Lamp(State.Off);
+        var sw = new Switch(lamp);
 
-    public void Operate()
-    {
-        State = State == State.On ? State.Off : State.On;
-        Console.WriteLine("Luz " + (State == State.On ? "Ligada" : "Desligada"));
-    }
-}
-
-class Switch
-{
-    private Lamp lamp;
-
-    public Switch(Lamp device)
-    {
-        this.lamp = device;
-    }
-
-    public void Press()
-    {
-        lamp.Operate();
+        sw.Press(); // Liga a luz
+        sw.Press(); // Desliga a luz
     }
 }
